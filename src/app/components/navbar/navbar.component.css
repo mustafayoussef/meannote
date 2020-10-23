@@ -1,0 +1,10 @@
+a {
+  cursor: pointer;
+}
+.icon {
+  height: 45px;
+  width: 45px;
+}
+.navbar-brand span {
+  margin-left: -5px;
+}

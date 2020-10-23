@@ -1,0 +1,79 @@
+<section id="signUp">
+  <div class="container">
+    <form action="" class="w-50 m-auto" [formGroup]="signUp" (ngSubmit)="register()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for=""></label>
+            <input type="text" class="form-control" name="" formControlName="firstname" placeholder="Enter First Name"
+              [class.is-valid]="firstname().status=='VALID'">
+          </div>
+          <div *ngIf="firstname().errors && firstname().touched" class="alert alert-danger text-center m-auto"
+            role="alert">
+            <strong *ngIf="firstname().errors.required">First Name is required</strong>
+            <strong *ngIf="firstname().errors.minlength || firstname().errors.pattern ">Minimum length of 4 characters,
+              first letter must be capitalized</strong>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for=""></label>
+            <input type="text" class="form-control" name="" formControlName="lastname" placeholder="Enter Last Name"
+              [class.is-valid]="lastname().status=='VALID'">
+          </div>
+          <div *ngIf="lastname().errors && lastname().touched" class="alert alert-danger text-center" role="alert">
+            <strong *ngIf="lastname().errors.required">Last Name is required</strong>
+            <strong *ngIf="lastname().errors.minlength || lastname().errors.pattern">Minimum length of 4 characters,
+              first letter must be capitalized</strong>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for=""></label>
+            <input type="email" class="form-control" name="" placeholder="Enter Email" formControlName="email"
+              [class.is-valid]="email().status=='VALID'">
+          </div>
+          <div *ngIf="email().errors && email().touched" class="alert alert-danger" role="alert">
+            <strong *ngIf="email().errors.required">Email is required</strong>
+            <strong *ngIf="email().errors.email">You must enter email</strong>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for=""></label>
+            <input type="password" class="form-control" name="" formControlName="password" placeholder="Enter Password"
+              [class.is-valid]="password().status=='VALID'">
+          </div>
+          <div *ngIf="password().errors && password().touched" class="alert alert-danger" role="alert">
+            <strong *ngIf="password().errors.required">Password is required</strong>
+            <strong *ngIf="password().errors.pattern">
+              <li>password must contain at least eight characters</li>
+              <li>at least one number</li>
+              <li>and both lower and uppercase letters</li>
+              <li>and special characters</li>
+            </strong>
+          </div>
+        </div>
+        <div class="col-md-12 mb-4">
+          <div class="form-group">
+            <label for=""></label>
+            <input type="password" class="form-control" name="" formControlName="confirmPassword"
+              placeholder="Enter Confirm Password " [class.is-valid]="confirmPassword().status=='VALID'">
+          </div>
+          <div *ngIf="confirmPassword().errors && confirmPassword().touched" class="alert alert-danger" role="alert">
+            <strong *ngIf="confirmPassword().errors.required">Confirm Password is required</strong>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-info d-block m-auto w-25"><span
+            *ngIf="!isClicked">Register</span><span *ngIf="isClicked">wating...</span></button>
+        <div *ngIf="isSuccess" class="alert alert-success w-100 mt-4" role="alert">
+          <strong>{{ responseMessage }}</strong>
+        </div>
+        <div *ngIf="isFail" class="alert alert-danger w-100 mt-4" role="alert">
+          <strong>{{ responseMessage }}</strong>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- [disabled]="signUp.invalid" -->
