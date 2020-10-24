@@ -60,6 +60,7 @@ export class notesComponent implements OnInit {
   getID(id) {
     this.noteID = id;
   }
+
   deleteNote() {
     this.notesService.deleteNote(this.noteID).subscribe((res) => {
       if (res.success) {
@@ -75,6 +76,7 @@ export class notesComponent implements OnInit {
       this.editNote.controls.desc.setValue(res.desc);
     });
   }
+  
   updateNote() {
     let data = {
       title: this.editNote.value.title,
