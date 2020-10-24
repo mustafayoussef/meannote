@@ -1,11 +1,34 @@
 #profile {
-    min-height: 100vh;
-    background-color: #343a40 !important;
-  }
-  form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
+  min-height: 100vh;
+  background-color: #343a40 !important;
+}
+.details {
+  margin-top: 20px;
+  height: 550px;
+  width: 900px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #343a40;
+  border: solid 1px #2a98b8;
+  border-radius: 15px;
+}
+.details h1,
+h3,
+h4 {
+  color: #a88824 !important;
+  text-shadow: 2px 2px 0px #9b4e42;
+}
+.name,
+.email,
+.password {
+  position: relative;
+}
+.edit-name,
+.edit-email,
+.edit-password {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
