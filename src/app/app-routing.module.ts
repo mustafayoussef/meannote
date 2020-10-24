@@ -1,3 +1,4 @@
+import { ProfileComponent } from './components/profile/profile.component';
 import { notesComponent } from './components/notes/notes.component';
 
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'changepassword/:token', component: ChangePasswordComponent },
   { path: 'notes', canActivate: [AuthGuard], component: notesComponent },
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

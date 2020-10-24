@@ -23,7 +23,7 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
-  getoken() {
+  getoken(): any {
     return localStorage.getItem('token');
   }
   forgetPassword(data: any): Observable<any> {

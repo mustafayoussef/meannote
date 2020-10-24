@@ -2,6 +2,7 @@ import { NotesService } from '../../services/notes.service';
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
 declare let $: any;
 @Component({
   selector: 'app-notes',
@@ -12,9 +13,14 @@ export class notesComponent implements OnInit {
   allNotes = '';
   isLoad = false;
   noteID = '';
-
-  constructor(private notesService: NotesService, private router: Router) {
+  name;
+  constructor(
+    private notesService: NotesService,
+    private router: Router,
+    private dataService: DataService
+  ) {
     this.getNotes();
+    this.getName();
   }
 
   addNote = new FormGroup({
@@ -76,7 +82,7 @@ export class notesComponent implements OnInit {
       this.editNote.controls.desc.setValue(res.desc);
     });
   }
-  
+
   updateNote() {
     let data = {
       title: this.editNote.value.title,
@@ -97,6 +103,13 @@ export class notesComponent implements OnInit {
       if (res.success) {
         $('#deleteNotes').modal('hide');
         this.getNotes();
+      }
+    });
+  }
+  getName() {
+    this.dataService.user().subscribe((res) => {
+      if (res.success) {
+        this.dataService.broadcastLoginChange(res.success.firstname);
       }
     });
   }

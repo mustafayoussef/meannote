@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
+import { DataService } from '../../services/data.service';
 declare var $: any;
 
 @Component({
@@ -10,18 +10,29 @@ declare var $: any;
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  isLogin = false;
   name;
-  constructor(public authService: AuthService, private router: Router) {
-    if (localStorage.getItem('token')) {
-      let token = localStorage.getItem('token');
-      let decoded = jwt_decode(token);
-      console.log(decoded);
-      this.name = decoded.firstname;
-    }
+  tok;
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private dataService: DataService
+  ) {
+    this.getName();
+  }
+
+  getName() {
+    this.isLogin = true;
+    this.dataService.name.subscribe((val) => {
+      this.name = val;
+    });
   }
   logout() {
     localStorage.removeItem('token');
+    this.name = '';
     this.router.navigate(['/signin']);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getName();
+  }
 }

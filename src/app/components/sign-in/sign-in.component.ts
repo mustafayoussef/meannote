@@ -1,4 +1,3 @@
-import { logging } from 'protractor';
 import { AuthService } from './../../services/auth.service';
 // tslint:disable: typedef
 import { Component, OnInit } from '@angular/core';
@@ -34,18 +33,18 @@ export class SignInComponent implements OnInit {
   login() {
     this.isClicked = true;
     if (this.signIn.valid) {
-      this.authService.signIn(this.signIn.value).subscribe((data) => {
-        if (data.success) {
-          localStorage.setItem('token', data.accessToken);
-          this.responseMessage = data.success;
+      this.authService.signIn(this.signIn.value).subscribe((res) => {
+        if (res.success) {
+          localStorage.setItem('token', res.accessToken);
+          this.responseMessage = res.success;
           this.isClicked = false;
           this.isSuccess = true;
           setTimeout(() => {
             this.isSuccess = false;
             this.router.navigate(['/notes']);
           }, 2000);
-        } else if (data.fail) {
-          this.responseMessage = data.fail;
+        } else if (res.fail) {
+          this.responseMessage = res.fail;
           this.isClicked = false;
           this.isFail = true;
           setTimeout(() => {
