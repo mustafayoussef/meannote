@@ -18,7 +18,11 @@ export class SignInComponent implements OnInit {
   responseMessage = '';
   header = new Headers();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/profile']);
+    }
+  }
   signIn = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -32,7 +36,7 @@ export class SignInComponent implements OnInit {
     if (this.signIn.valid) {
       this.authService.signIn(this.signIn.value).subscribe((data) => {
         if (data.success) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data.accessToken);
           this.responseMessage = data.success;
           this.isClicked = false;
           this.isSuccess = true;

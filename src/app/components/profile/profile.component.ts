@@ -21,26 +21,25 @@ export class ProfileComponent implements OnInit {
     title: new FormControl('', Validators.required),
     desc: new FormControl('', Validators.required),
   });
+  editNote = new FormGroup({
+    title: new FormControl('', Validators.required),
+    desc: new FormControl('', Validators.required),
+  });
 
   getNotes() {
-      // return this.notesService.getUserNote().subscribe((data) => {
-      //   console.log(data);
-      // });
-    // if (!HttpErrorResponse) {
-    // } else {
-    //   console.log('asdasdasdasdasdasd');
-    // }
-    // return this.notesService.getUserNote().subscribe((data) => {
-    //   console.log(data);
-    //   if (this.notesService.userToken == localStorage.getItem('token')) {
-    //     if (data.success) {
-    //       this.isLoad = true;
-    //       this.allNotes = data.notes;
-    //     }
-    //   } else {
-    //     console.log('error');
-    //   }
-    // });
+    return this.notesService.getUserNote().subscribe((data) => {
+      // console.log(data);
+      if (this.notesService.userToken === localStorage.getItem('token')) {
+        if (data.success) {
+          this.isLoad = true;
+          this.allNotes = data.notes;
+        }
+      } else if (
+        this.notesService.userToken !== localStorage.getItem('token')
+      ) {
+        console.log('error');
+      }
+    });
   }
 
   addData() {
@@ -70,13 +69,24 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.notesService.userToken);
-    // let token = this.notesService.userToken;
-    // if (this.notesService.userToken === localStorage.getItem('token')) {
-    //   console.log('yes');
-    // } else {
-    //   console.log('no');
-    // }
+  setValue() {
+    this.notesService.getNoteByID(this.noteID).subscribe((res) => {
+      this.editNote.controls.title.setValue(res.title);
+      this.editNote.controls.desc.setValue(res.desc);
+    });
   }
+  updateNote() {
+    let data = {
+      title: this.editNote.value.title,
+      desc: this.editNote.value.desc,
+    };
+    this.notesService.editNote(this.noteID, data).subscribe((res) => {
+      if (res.success) {
+        $('#editNote').modal('hide');
+        this.getNotes();
+      }
+    });
+  }
+
+  ngOnInit(): void {}
 }
