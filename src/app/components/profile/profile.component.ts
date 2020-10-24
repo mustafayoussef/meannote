@@ -83,6 +83,7 @@ export class ProfileComponent implements OnInit {
     this.notesService.editNote(this.noteID, data).subscribe((res) => {
       if (res.success) {
         $('#editNote').modal('hide');
+        this.isLoad = true;
         this.getNotes();
       }
     });
