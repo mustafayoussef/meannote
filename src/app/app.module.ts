@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { notesComponent } from './components/notes/notes.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -12,15 +12,21 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
+    notesComponent,
     SignInComponent,
     SignUpComponent,
     NavbarComponent,
     NotFoundComponent,
+    ForgetPasswordComponent,
+    ChangePasswordComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

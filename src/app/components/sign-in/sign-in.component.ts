@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/notes']);
     }
   }
   signIn = new FormGroup({
@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
           this.isSuccess = true;
           setTimeout(() => {
             this.isSuccess = false;
-            this.router.navigate(['/profile']);
+            this.router.navigate(['/notes']);
           }, 2000);
         } else if (data.fail) {
           this.responseMessage = data.fail;

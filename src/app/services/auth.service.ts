@@ -26,4 +26,13 @@ export class AuthService {
   getoken() {
     return localStorage.getItem('token');
   }
+  forgetPassword(data: any): Observable<any> {
+    return this.httpClient.post(this.baseURL + 'requestpassword', data);
+  }
+  changePassword(token, data: any): Observable<any> {
+    return this.httpClient.post(
+      `${this.baseURL}handleresetpassword/${token}`,
+      data
+    );
+  }
 }

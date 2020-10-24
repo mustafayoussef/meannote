@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for=""></label>
-            <input type="email" class="form-control" name="" placeholder="Enter Email" formControlName="email"
+            <input type="email" class="form-control" name="email" placeholder="Enter Email" formControlName="email"
               [class.is-valid]="email().status=='VALID'">
           </div>
           <div *ngIf="email().errors && email().touched" class="alert alert-danger" role="alert">
@@ -16,7 +16,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for=""></label>
-            <input type="password" class="form-control" name="" formControlName="password" placeholder="Enter Password"
+            <input type="password" class="form-control" name="password" formControlName="password" placeholder="Enter Password"
               [class.is-valid]="password().status=='VALID'">
           </div>
           <div *ngIf="password().errors && password().touched" class="alert alert-danger" role="alert">
@@ -24,6 +24,9 @@
             <strong *ngIf="password().errors.pattern">Minimum length of 8 characters and must contain a special symbol
               and numbers</strong>
           </div>
+        </div>
+        <div class="col-md-12">
+          <a class="text-info d-flex justify-content-end" routerLink='/forgetpassword'>forget password</a>
         </div>
         <button type="submit" class="btn btn-outline-info d-block m-auto w-25"><span
             *ngIf="!isClicked">Signin</span><span *ngIf="isClicked">wating...</span></button>
