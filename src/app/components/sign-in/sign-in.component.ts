@@ -33,25 +33,29 @@ export class SignInComponent implements OnInit {
   login() {
     this.isClicked = true;
     if (this.signIn.valid) {
-      this.authService.signIn(this.signIn.value).subscribe((res) => {
-        if (res.success) {
-          localStorage.setItem('token', res.accessToken);
-          this.responseMessage = res.success;
-          this.isClicked = false;
-          this.isSuccess = true;
-          setTimeout(() => {
-            this.isSuccess = false;
-            this.router.navigate(['/notes']);
-          }, 2000);
-        } else if (res.fail) {
-          this.responseMessage = res.fail;
+      this.authService.signIn(this.signIn.value).subscribe(
+        (res) => {
+          if (res.success) {
+            localStorage.setItem('token', res.accessToken);
+            this.responseMessage = res.success;
+            this.isClicked = false;
+            this.isSuccess = true;
+            setTimeout(() => {
+              this.isSuccess = false;
+              this.router.navigate(['/notes']);
+            }, 2000);
+          }
+        },
+        (error) => {
+          // console.log(error.error.error.message.fail);
+          this.responseMessage = error.error.error.message.fail;
           this.isClicked = false;
           this.isFail = true;
           setTimeout(() => {
             this.isFail = false;
           }, 6000);
         }
-      });
+      );
     } else if (this.signIn.invalid) {
       console.log('your form is invalid');
     }
