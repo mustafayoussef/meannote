@@ -1,4 +1,4 @@
-#profile {
+#update {
   min-height: 100vmin;
   background-color: #343a40 !important;
   padding-top: 4rem;
@@ -14,11 +14,4 @@
   background-color: #343a40;
   border: solid 1px #2a98b8;
   border-radius: 15px;
-}
-
-.details h1,
-h3,
-h4 {
-  color: #a88824 !important;
-  text-shadow: 1px 1px 0px #9b4e42;
 }

@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   firstname;
   lastname;
   email;
-
+  isLoad = false;
   constructor(private dataService: DataService) {
     this.user();
   }
@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     this.dataService.user().subscribe(
       (res) => {
         if (res.success) {
+          this.isLoad = true;
           console.log(res);
           this.dataService.broadcastLoginChange(res.success.firstname);
           this.firstname = res.success.firstname;
@@ -32,7 +33,7 @@ export class ProfileComponent implements OnInit {
     );
   }
   ngOnInit(): void {
-    $('#profile').particleground();
+    // $('#profile').particleground();
     // this.user();
   }
 }

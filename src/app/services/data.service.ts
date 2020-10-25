@@ -12,8 +12,10 @@ export class DataService {
   user(): Observable<any> {
     return this.httpClient.get(`${this.baseURL}getuser`);
   }
-
   broadcastLoginChange(text: string) {
     this.name.next(text);
+  }
+  changeName(data): Observable<any> {
+    return this.httpClient.patch(`${this.baseURL}updateuser`, data);
   }
 }

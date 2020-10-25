@@ -1,23 +1,71 @@
 <section id="profile">
-  <div class="details shadow p-5 text-center text-info">
-    <div class=" contect">
-      <div class="name">
-        <h1>{{ firstname }} {{ lastname }}</h1>
-        <a class="btn btn-outline-info text-center edit-name" href="">Edit Name</a>
-      </div>
-      <hr class="my-5 bg-info" />
-      <div class="email">
-        <h3>{{ email }}</h3>
-        <a class="btn btn-outline-info text-center edit-email" href="">Edit Email</a>
-      </div>
-      <hr class="my-5 bg-info" />
-      <div class="password">
-        <h4>Password</h4>
-        <a class="btn btn-outline-info text-center edit-password" href="">Change Password</a>
-      </div>
-      <hr class="my-5 bg-info" />
-      <div class="notes">
-        <h3>Your notes count is : 30</h3>
+  <div *ngIf="!isLoad"  class="row">
+    <div class="col-md-12 text-center ">
+      <i class="fas fa-spinner fa-spin fa-2x text-white"></i>
+    </div>
+  </div>
+
+  <div *ngIf="isLoad" class="details  shadow text-center text-info">
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="ml-5 mt-2 d-flex justify-content-center align-items-center">
+            <h1>{{ firstname }} {{ lastname }}</h1>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="d-flex mt-3  justify-content-end">
+            <a class="btn btn-outline-info text-center edit-name" href="">Edit Name</a>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <hr class="my-3 bg-info" />
+        </div>
+
+        <div class="col-md-10">
+          <div class="ml-5 mt-2 d-flex justify-content-center align-items-center">
+            <h3>{{ email }}</h3>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="d-flex mt-3  justify-content-end">
+            <a class="btn btn-outline-info text-center edit-email" href="">Edit Email</a>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <hr class="my-3 bg-info" />
+        </div>
+
+        <div class="col-md-9 pl-5 ">
+          <div class="ml-5 pl-5 mt-2 d-flex justify-content-center align-items-center">
+            <h4>Password</h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="d-flex mt-3  justify-content-end">
+            <a class="btn btn-outline-info text-center edit-password" href="">Change Password</a>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <hr class="my-3 bg-info" />
+        </div>
+
+        <div class="col-md-12">
+          <div class=" mr-5 pr-5 d-flex justify-content-center align-items-center">
+            <h3>Your notes count is : 30</h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="d-flex mt-3  justify-content-end">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <hr class="my-3 bg-info" />
+
+        </div>
+        <div class="col-md-12">
+          <a class="btn btn-outline-danger text-center mr-5 mt-4 " href="">Delete Account</a>
+        </div>
       </div>
     </div>
   </div>
